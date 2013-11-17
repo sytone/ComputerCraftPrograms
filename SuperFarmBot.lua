@@ -1,3 +1,5 @@
+-- Setup the console ready to go. 
+
 term.clear()
 print("Super Farm Bot v0.91")
 print("made by Landstryder")
