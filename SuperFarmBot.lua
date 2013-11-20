@@ -4,73 +4,88 @@ term.clear()
 print("Super Farm Bot v0.91")
 print("made by Landstryder")
 
+-- Fuel function. 
+-- Needs to be near fuel chest to execute. 
+-- Slot 16 is where the fuel should live. 
 function fuelUp()
  print("checking fuel level and refueling")
  turtle.select(16)
  while turtle.getFuelLevel() < 1000 do
   if not turtle.refuel(1) then
-  right() turtle.suck() left()
+   right() 
+   turtle.suck() 
+   left()
   end
-  end
+ end
 end
 
+
+-- Sorting function. 
 function sort()
-turtle.select(1)
-turtle.suckDown()
-turtle.suckDown()
-turtle.suckDown()
-for it=1,3 do
-for it=4,15 do turtle.suck() end
-for it=4,15 do
-turtle.select(it)
-if turtle.compareTo(1) or turtle.compareTo(2) or turtle.compareTo(3) then 
-left() turtle.drop() right()
-end
-end
-end
-for it=1,3 do
-turtle.select(it)
-turtle.dropDown()
-end
+  turtle.select(1)
+  turtle.suckDown()
+  turtle.suckDown()
+  turtle.suckDown()
+  for it=1,3 do
+    for it=4,15 do 
+      turtle.suck() 
+    end
+    for it=4,15 do
+      turtle.select(it)
+      if turtle.compareTo(1) or turtle.compareTo(2) or turtle.compareTo(3) then 
+        left() turtle.drop() right()
+      end
+    end
+  end
+  for it=1,3 do
+    turtle.select(it)
+    turtle.dropDown()
+  end
 end
 
 function getStarted()
- print("starting cycle")
- fuelUp()
- up()
- flip()
- go(8)
- left()
- go(11)
+  print("starting cycle")
+  fuelUp()
+  up()
+  flip()
+  go(8)
+  left()
+  go(11)
 end
 
 function goHome()
- print("returning to Home station")
- go(19)
- left()
- go(13)
- down()
- dump()
- sort()
- dump()
+  print("returning to Home station")
+  go(19)
+  left()
+  go(13)
+  down()
+  dump()
+  sort()
+  dump()
 end
 
---Basic Functions
+-- Basic Functions.
+-- Moving up, if there is a block then dig first. 
 function up(num)
+  -- If the number is not set just move up one. 
   if num == nil then num = 1 end
   for it=1,num do
     while not turtle.up() do turtle.digUp() end
   end
 end
 
+-- Moving down, if there is a block there dig first. 
 function down(num)
+  -- If the number is not set just move down one. 
   if num == nil then num = 1 end
   for it=1,num do
     while not turtle.down() do turtle.digDown() end
   end
 end
 
+-- Moving forward, if there is a block there dig first. 
 function go(num)
+  -- If the number is not set just move forward one. 
   if num == nil then num = 1 end
   for it=1,num do
     while not turtle.forward() do turtle.dig() end
