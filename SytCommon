@@ -1,0 +1,21 @@
+-- A collection of common functions to load as API. 
+
+--
+-- Summary:
+--   Will split a string into two parts using the supplied delimiter. 
+-- Parameter string
+--   The string you want split. 
+-- Parameter delimiter
+--   The delimiter to use to split the string. 
+-- Example
+--  theTest = splitString("My Test, Was Good!", ",")
+--  print(theTest[2]) -- Starts from 1...
+--
+-- Was Good!
+--
+function splitString(string, delimiter)
+  local parts={}
+  parts[1]=string:sub(0, (string:find(delimiter))-1)
+  parts[2]=string:sub((string:find(delimiter))+1)
+  return parts
+end
